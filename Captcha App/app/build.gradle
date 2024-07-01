@@ -8,8 +8,14 @@
 
 plugins {
     // Apply the application plugin to add support for building a CLI application in Java.
-    id 'application'
+    id 'org.springframework.boot' version '2.7.0'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
 }
+
+group = 'com.utility'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
 
 repositories {
     // Use Maven Central for resolving dependencies.
@@ -19,7 +25,8 @@ repositories {
 dependencies {
     // Use JUnit Jupiter for testing.
     testImplementation 'org.junit.jupiter:junit-jupiter:5.9.1'
-
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'com.google.code.kaptcha:kaptcha:2.3.2'
     // This dependency is used by the application.
     implementation 'com.google.guava:guava:31.1-jre'
 }

@@ -1,7 +1,7 @@
-# java-utility
-Java Utility for Personal Use.
+# Java Useful Utility
+Java Useful Utility for Personal Use.
+- Captcha App: Generate captcha image and provide validate method.
 
 ### TODO:
-- Captcha App
 - JAVA NPE Handle
 - XML parser
