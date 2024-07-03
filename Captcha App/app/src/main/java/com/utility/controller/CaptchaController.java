@@ -30,7 +30,7 @@ public class CaptchaController {
         response.setContentType("image/jpeg");
 
         String captchaText = captchaProducer.createText();
-        // Save the captcha answer into session.
+        // Save the "captchaText" into session (Client's Cookies).
         request.getSession().setAttribute("captcha", captchaText);
         BufferedImage bi = captchaProducer.createImage(captchaText);
 
@@ -40,15 +40,18 @@ public class CaptchaController {
 
         Map<String, String> responseMap = new HashMap<>();
         responseMap.put("captcha", base64Image);
+        // Use captchaText to generate image and return back to client.
         return ResponseEntity.ok(responseMap);
     }
 
     @PostMapping("/api/validateCaptcha")
     public ResponseEntity<Map<String, Object>> validateCaptcha(HttpServletRequest request, @RequestBody Map<String, String> captchaRequest) {
+        // Get the "captchaText" from client request cookies.
         String captcha = (String) request.getSession().getAttribute("captcha");
         String captchaInput = captchaRequest.get("captcha");
         Map<String, Object> responseMap = new HashMap<>();
 
+        // Validate the result.
         if (captcha != null && captcha.equals(captchaInput)) {
             responseMap.put("status", "success");
         } else {
